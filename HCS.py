@@ -35,7 +35,7 @@ def Start():
                         user_password = None
                         break
     else:
-        data_settings = {"password":False,"using_password_for_key":False,"logo": 2,"autocopy":True, "cleaner":True}
+        data_settings = {"password":False,"using_password_for_key":False,"logo": 2,"autocopy":True}
         with open ("settings.json", "w", encoding="utf-8") as f:
             json.dump(data_settings, f, indent=4)
     logo_choice = data_settings["logo"]
@@ -314,7 +314,7 @@ def generate_keys(): # создание обоих ключей(перезапи
         using_password_for_key = data_settings.get("using_password_for_key")
     else:
         with open ("settings.json", "w", encoding = "utf-8") as f:
-            data_settings = {"password":False,"using_password_for_key":False,"logo": 2,"autocopy":True,"cleaner":True}
+            data_settings = {"password":False,"using_password_for_key":False,"logo": 2,"autocopy":True}
             json.dump(data_settings, f, indent=4)
         using_password_for_key = False
     while True:
@@ -391,7 +391,7 @@ def crypter(): #Шифровщик сообщения. Вызывается из
                 cipher = Fernet(key)
                 d = int(cipher.decrypt(d.encode()).decode())
         else:
-            data_settings = {"password":False,"using_password_for_key":False,"logo": 2,"autocopy":True,"cleaner":True}
+            data_settings = {"password":False,"using_password_for_key":False,"logo": 2,"autocopy":True}
             with open ("settings.json", "w", encoding="utf-8") as f:
                 json.dump(data_settings, f, indent=4)
         d = int(d)
@@ -450,7 +450,7 @@ def uncrypter(): #Расшифровщик сообщения. Вызывает�
             with open("settings.json", "r", encoding="utf-8") as f:
                 data_settings = json.load(f)
         else:
-            data_settings = {"password":False,"using_password_for_key":False,"logo": 2,"autocopy":True,"cleaner":True}
+            data_settings = {"password":False,"using_password_for_key":False,"logo": 2,"autocopy":True}
             with open("settings.json", "w", encoding="utf-8") as f:
                 json.dump(data_settings, f, indent=4)
         while True:
@@ -521,7 +521,7 @@ def import_export_key(mode):
         with open("settings.json", "r", encoding="utf-8") as f:
             data_settings = json.load(f)
     else:
-        data_settings = {"password":False,"using_password_for_key":False,"logo": 2,"autocopy":True,"cleaner":True}
+        data_settings = {"password":False,"using_password_for_key":False,"logo": 2,"autocopy":True}
         with open("settings.json", "w", encoding="utf-8") as f:
             json.dump(data_settings, f, indent=4)
     autocopy = data_settings["autocopy"]
@@ -646,7 +646,7 @@ def settings():
                 data_settings = json.load(f)
         else:
             with open("settings.json", "w", encoding="utf-8") as f:
-                data_settings = {"password":False,"using_password_for_key":False,"logo": 2,"autocopy":True,"cleaner":True}
+                data_settings = {"password":False,"using_password_for_key":False,"logo": 2,"autocopy":True}
                 json.dump(data_settings, f, indent=4)
         choice_settings = input(f'''
     МЕНЮ НАСТРОЕК
@@ -654,7 +654,6 @@ def settings():
 (2) Шифрование приватного ключа паролем - {data_settings.get("using_password_for_key")}
 (3) Автокопирование - {data_settings.get("autocopy")}
 (4) Формат логотипа - {data_settings.get("logo")} / 2
-(5) Очистка консоли - идея
 (9) Выйти в главное меню
 (0) Выйти
 ''').strip()
